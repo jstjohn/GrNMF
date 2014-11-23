@@ -2,7 +2,7 @@ Package: GrNMF
 Type: Package
 Title: GrNMF Graph constrained implementation of nonnegative matrix
     factorization (NMF)
-Version: 1.0
+Version: 0.1
 Date: 2014-11-22
 Author: John St. John
 Maintainer: Person to send complaints to <johnthesaintjohn@gmail.com>
