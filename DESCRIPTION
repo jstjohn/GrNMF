@@ -1,0 +1,18 @@
+Package: GrNMF
+Type: Package
+Title: GrNMF Graph constrained implementation of nonnegative matrix
+    factorization (NMF)
+Version: 1.0
+Date: 2014-11-22
+Author: John St. John
+Maintainer: Person to send complaints to <johnthesaintjohn@gmail.com>
+Description: An R/RCpp implementation of Deng Cai's Non-negative Matrix
+    Factorization on Manifold
+License: MIT + file LICENSE
+Imports:
+    Rcpp (>= 0.11.3),
+    RcppArmadillo (>= 0.4.500.0)
+LinkingTo: Rcpp, RcppArmadillo
+Depends:
+    RcppArmadillo,
+    Rcpp
