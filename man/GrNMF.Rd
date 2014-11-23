@@ -42,20 +42,30 @@ groups <- unlist(mapply(rep, seq(counts), counts))
 # run on a data.frame
 set.seed(10)
 system.time(res <- nmf(data.frame(x), 3, nmfAlgorithm("lee"), "random"))
-resid=data.frame(x)- (res@fit@W \%*\% res@fit@H)
-norm(as.matrix(resid),'F')
+
 
 # Now do the same for GrNMF
-adj2=matrix(1,p,p)
+adj2=matrix(1,p,p) #dummy matrix of proper dimensions, not used since lambda=0
 set.seed(10)
 
 # turn off the graphical part for this comparison
 # by setting lambda to 0
 system.time(res2<-GrNMF(x,adj2,lambda=0,k=3))
+
+##
+# now we can compare the two fits to the NMF
+# objective function
+
+# first from the NMF package
+norm(as.matrix(data.frame(x)- (res@fit@W \%*\% res@fit@H)),'F')
+# and next from GrNMF package
 res2$ObjectiveFit
 }
 }
+\references{
+Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63–72. doi:10.1109/ICDM.2008.57
+}
 \seealso{
-\href{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.167.3428}{Non-negative Matrix Factorization on Manifold}
+see \code{\link{NMF}}
 }
 

@@ -16,3 +16,7 @@ LinkingTo: Rcpp, RcppArmadillo
 Depends:
     RcppArmadillo,
     Rcpp
+Suggests:
+    NMF
+URL: http://www.r-project.org, https://github.com/jstjohn/GrNMF
+BugReports: https://github.com/jstjohn/GrNMF/issues
