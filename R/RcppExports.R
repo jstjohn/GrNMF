@@ -18,7 +18,9 @@
 #'   (sometimes called \code{H}) for the NNLS fit.
 #'   \code{Max.iter} which stores the maximum iteration before NMF converged 
 #'   Additionally the standard NMF objective 
-#'   function fit is returned as \code{ObjectiveFit}.
+#'   function fit is returned as \code{ObjectiveFitNMF}.
+#'   The full GrNMF objective function score is retured as
+#'   \code{ObjectiveFitGrNMF}
 #' @seealso see \code{\link{NMF}}
 #' @references Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63–72. doi:10.1109/ICDM.2008.57
 #' @export
@@ -52,7 +54,7 @@
 #' # first from the NMF package
 #' norm(as.matrix(data.frame(x)- (res@@fit@@W %*% res@@fit@@H)),'F')
 #' # and next from GrNMF package
-#' res2$ObjectiveFit
+#' res2$ObjectiveFitNMF
 #' }
 GrNMF <- function(Xr, Wr, k = 5L, lambda = 100L, n_iter = 5000L, converge = 1e-6) {
     .Call('GrNMF_GrNMF', PACKAGE = 'GrNMF', Xr, Wr, k, lambda, n_iter, converge)

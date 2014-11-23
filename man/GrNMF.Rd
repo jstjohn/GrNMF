@@ -24,7 +24,9 @@ a list of \code{U},
   (sometimes called \code{H}) for the NNLS fit.
   \code{Max.iter} which stores the maximum iteration before NMF converged
   Additionally the standard NMF objective
-  function fit is returned as \code{ObjectiveFit}.
+  function fit is returned as \code{ObjectiveFitNMF}.
+  The full GrNMF objective function score is retured as
+  \code{ObjectiveFitGrNMF}
 }
 \description{
 \code{GrNMF} Graphically constrained NMF
@@ -59,7 +61,7 @@ system.time(res2<-GrNMF(x,adj2,lambda=0,k=3))
 # first from the NMF package
 norm(as.matrix(data.frame(x)- (res@fit@W \%*\% res@fit@H)),'F')
 # and next from GrNMF package
-res2$ObjectiveFit
+res2$ObjectiveFitNMF
 }
 }
 \references{

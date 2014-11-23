@@ -24,7 +24,9 @@ using namespace Rcpp;
 //'   (sometimes called \code{H}) for the NNLS fit.
 //'   \code{Max.iter} which stores the maximum iteration before NMF converged 
 //'   Additionally the standard NMF objective 
-//'   function fit is returned as \code{ObjectiveFit}.
+//'   function fit is returned as \code{ObjectiveFitNMF}.
+//'   The full GrNMF objective function score is retured as
+//'   \code{ObjectiveFitGrNMF}
 //' @seealso see \code{\link{NMF}}
 //' @references Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63–72. doi:10.1109/ICDM.2008.57
 //' @export
@@ -58,7 +60,7 @@ using namespace Rcpp;
 //' # first from the NMF package
 //' norm(as.matrix(data.frame(x)- (res@@fit@@W %*% res@@fit@@H)),'F')
 //' # and next from GrNMF package
-//' res2$ObjectiveFit
+//' res2$ObjectiveFitNMF
 //' }
 // [[Rcpp::export]]
 List GrNMF(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda=100, int n_iter=5000, double converge=1e-6) {
@@ -72,7 +74,7 @@ List GrNMF(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda=100, int n_it
     k = std::min(k, p);
     
     double lastFit=std::numeric_limits<double>::max();
-    int convergenceCheckFrequency=10;
+    int convergenceCheckFrequency=50;
     
     arma::mat X(Xr.begin(), n, p, false);       // reuses memory and avoids extra copy
     arma::mat W(Wr.begin(), p, p, false);
@@ -91,6 +93,7 @@ List GrNMF(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda=100, int n_it
     // the D matrix is the diagonal matrix of row (or column since W is symmetric)
     // sums of W. 
     arma::mat D = arma::diagmat(arma::sum(W));
+    arma::mat L = arma::mat(D - W);
     
     //loop over iterations
     int it=0;
@@ -130,7 +133,7 @@ List GrNMF(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda=100, int n_it
       }*/
       
       if(it % convergenceCheckFrequency == 0){
-        double fit = arma::norm(X-U*V.t(),"fro");
+        double fit = arma::as_scalar(arma::norm(X-U*V.t(),"fro")) + arma::as_scalar(lambda * arma::trace(V.t() * L * V));
         //allow the user to turn off by setting converge to a negative
         if(lastFit-fit <= converge && converge >= 0)
           break;
@@ -144,7 +147,8 @@ List GrNMF(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda=100, int n_it
         Rcpp::Named("U") = U,
         Rcpp::Named("V") = V,
         Rcpp::Named("Max.iter") = it,
-        Rcpp::Named("ObjectiveFit") = arma::norm(X-U*V.t(),"fro")
+        Rcpp::Named("ObjectiveFitNMF") = arma::as_scalar(arma::norm(X-U*V.t(),"fro")),
+        Rcpp::Named("ObjectiveFitGrNMF") = arma::as_scalar(arma::norm(X-U*V.t(),"fro")) + arma::as_scalar(lambda * arma::trace(V.t() * L * V))
     ) ;
 
 }

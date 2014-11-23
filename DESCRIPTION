@@ -5,7 +5,7 @@ Title: GrNMF Graph constrained implementation of nonnegative matrix
 Version: 0.1
 Date: 2014-11-22
 Author: John St. John
-Maintainer: Person to send complaints to <johnthesaintjohn@gmail.com>
+Maintainer: John St. John <johnthesaintjohn@gmail.com>
 Description: An R/RCpp implementation of Deng Cai's Non-negative Matrix
     Factorization on Manifold
 License: MIT + file LICENSE
