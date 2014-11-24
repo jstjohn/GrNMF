@@ -6,9 +6,9 @@
 
 using namespace Rcpp;
 
-// GrNMF
-List GrNMF(NumericMatrix Xr, NumericMatrix Wr, int k = 5, int lambda = 100, int n_iter = 5000, double converge = 1e-6);
-RcppExport SEXP GrNMF_GrNMF(SEXP XrSEXP, SEXP WrSEXP, SEXP kSEXP, SEXP lambdaSEXP, SEXP n_iterSEXP, SEXP convergeSEXP) {
+// grnmf
+List grnmf(NumericMatrix Xr, NumericMatrix Wr, int k = 5, int lambda_multiple = 1, int n_iter = 10000, double converge = 1e-6, bool dynamic_lambda = true);
+RcppExport SEXP GrNMF_grnmf(SEXP XrSEXP, SEXP WrSEXP, SEXP kSEXP, SEXP lambda_multipleSEXP, SEXP n_iterSEXP, SEXP convergeSEXP, SEXP dynamic_lambdaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -16,10 +16,11 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< NumericMatrix >::type Xr(XrSEXP );
         Rcpp::traits::input_parameter< NumericMatrix >::type Wr(WrSEXP );
         Rcpp::traits::input_parameter< int >::type k(kSEXP );
-        Rcpp::traits::input_parameter< int >::type lambda(lambdaSEXP );
+        Rcpp::traits::input_parameter< int >::type lambda_multiple(lambda_multipleSEXP );
         Rcpp::traits::input_parameter< int >::type n_iter(n_iterSEXP );
         Rcpp::traits::input_parameter< double >::type converge(convergeSEXP );
-        List __result = GrNMF(Xr, Wr, k, lambda, n_iter, converge);
+        Rcpp::traits::input_parameter< bool >::type dynamic_lambda(dynamic_lambdaSEXP );
+        List __result = grnmf(Xr, Wr, k, lambda_multiple, n_iter, converge, dynamic_lambda);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
