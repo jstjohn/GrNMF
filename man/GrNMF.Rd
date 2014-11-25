@@ -3,7 +3,7 @@
 \alias{grnmf}
 \title{A Network Constrained Version of Non-negative Matrix Factorization.}
 \usage{
-grnmf(Xr, Wr, k = 5L, lambda_multiple = 1L, n_iter = 10000L,
+grnmf(Xr, Wr, k = 5L, lambda_multiple = 1L, n_iter = 1000L,
   converge = 1e-06, dynamic_lambda = TRUE)
 }
 \arguments{
@@ -134,10 +134,10 @@ fit_grnmf <- kmeans(res3$V,3)
 sum(check_fit(fit_grnmf$cluster))/n
 }
 \references{
-Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63–72. doi:10.1109/ICDM.2008.57
+Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63-72. doi:10.1109/ICDM.2008.57
 
-Xu, W., Liu, X., & Gong, Y. (2003). Document clustering based on non-negative matrix factorization. the 26th annual international ACM SIGIR conference (pp. 267–273). New York, New York, USA: ACM. doi:10.1145/860435.860485
+Xu, W., Liu, X., & Gong, Y. (2003). Document clustering based on non-negative matrix factorization. the 26th annual international ACM SIGIR conference (pp. 267-273). New York, New York, USA: ACM. doi:10.1145/860435.860485
 
-Hofree, M., Shen, J. P., Carter, H., Gross, A., & Ideker, T. (2013). Network-based stratification of tumor mutations. Nature Methods, 10(11), 1108–1115. doi:10.1038/nmeth.2651
+Hofree, M., Shen, J. P., Carter, H., Gross, A., & Ideker, T. (2013). Network-based stratification of tumor mutations. Nature Methods, 10(11), 1108-1115. doi:10.1038/nmeth.2651
 }
 

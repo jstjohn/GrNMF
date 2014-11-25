@@ -7,7 +7,7 @@
 using namespace Rcpp;
 
 // grnmf
-List grnmf(NumericMatrix Xr, NumericMatrix Wr, int k = 5, int lambda_multiple = 1, int n_iter = 10000, double converge = 1e-6, bool dynamic_lambda = true);
+List grnmf(NumericMatrix Xr, NumericMatrix Wr, int k = 5, int lambda_multiple = 1, int n_iter = 1000, double converge = 1e-6, bool dynamic_lambda = true);
 RcppExport SEXP GrNMF_grnmf(SEXP XrSEXP, SEXP WrSEXP, SEXP kSEXP, SEXP lambda_multipleSEXP, SEXP n_iterSEXP, SEXP convergeSEXP, SEXP dynamic_lambdaSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;

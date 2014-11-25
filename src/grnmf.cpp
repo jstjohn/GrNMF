@@ -30,9 +30,9 @@ using namespace Rcpp;
 //'   function fit is returned as \code{ObjectiveFitNMF}.
 //'   The full GrNMF objective function score is retured as
 //'   \code{ObjectiveFitGrNMF}
-//' @references Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63–72. doi:10.1109/ICDM.2008.57
-//' @references Xu, W., Liu, X., & Gong, Y. (2003). Document clustering based on non-negative matrix factorization. the 26th annual international ACM SIGIR conference (pp. 267–273). New York, New York, USA: ACM. doi:10.1145/860435.860485
-//' @references Hofree, M., Shen, J. P., Carter, H., Gross, A., & Ideker, T. (2013). Network-based stratification of tumor mutations. Nature Methods, 10(11), 1108–1115. doi:10.1038/nmeth.2651
+//' @references Cai, D., He, X., Wu, X., & Han, J. (2008). Non-negative Matrix Factorization on Manifold. 2008 Eighth IEEE International Conference on Data Mining (ICDM), 63-72. doi:10.1109/ICDM.2008.57
+//' @references Xu, W., Liu, X., & Gong, Y. (2003). Document clustering based on non-negative matrix factorization. the 26th annual international ACM SIGIR conference (pp. 267-273). New York, New York, USA: ACM. doi:10.1145/860435.860485
+//' @references Hofree, M., Shen, J. P., Carter, H., Gross, A., & Ideker, T. (2013). Network-based stratification of tumor mutations. Nature Methods, 10(11), 1108-1115. doi:10.1038/nmeth.2651
 //' @export
 //' @examples
 //' 
@@ -131,7 +131,7 @@ using namespace Rcpp;
 //' sum(check_fit(fit_grnmf$cluster))/n
 //' 
 // [[Rcpp::export]]
-List grnmf(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda_multiple=1, int n_iter=10000, double converge=1e-6, bool dynamic_lambda = true) {
+List grnmf(NumericMatrix Xr, NumericMatrix Wr, int k=5, int lambda_multiple=1, int n_iter=1000, double converge=1e-6, bool dynamic_lambda = true) {
     // n samples and p variables
     int p = Xr.nrow(), n = Xr.ncol();
     
